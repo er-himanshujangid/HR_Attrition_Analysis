@@ -1,0 +1,104 @@
+HR EMPLOYEE ATTRITION ANALYSIS - FINDINGS
+==========================================
+Dataset: IBM HR Analytics Employee Attrition (1,470 employees, 35 columns)
+Attrition rate = employees who left / employees in the group
+All numbers below matched across Python, Excel, SQL and Power BI.
+
+
+OVERALL
+-------
+- 1,470 employees, 237 left, 1,233 stayed.
+- Overall attrition rate: 16.1% (about 1 in 6 employees).
+- Data quality: 0 missing values, 0 duplicate rows.
+- 3 columns (EmployeeCount, StandardHours, Over18) had the same value for
+  every employee, so they were dropped along with EmployeeNumber (an ID).
+
+
+Q1: WHICH DEPARTMENT HAS THE HIGHEST ATTRITION?
+-----------------------------------------------
+- Sales: 20.6%
+- Human Resources: 19.0%   (19.05% in Excel before rounding)
+- Research & Development: 13.8%
+- Company average: 16.1%
+=> Sales and HR are above the company average, R&D is below.
+
+
+Q2: DOES OVERTIME AFFECT ATTRITION?
+-----------------------------------
+- Employees working overtime: about 30.5%  (127 of 416 left)
+- Employees not working overtime: about 10.4%
+=> Overtime workers leave at roughly 3 times the rate of those who do not.
+   This is the strongest single signal in the analysis.
+
+
+Q3: IS ATTRITION LINKED TO INCOME?
+----------------------------------
+- Low income (up to 3,000):         28.6%   (113 of 395 left)
+- Medium income (3,001 - 6,000):    12.7%   (66 of 519 left)
+- High income (6,001 - 10,000):     12.0%   (33 of 275 left)
+- Very High income (above 10,000):   8.9%   (25 of 281 left)
+=> Low-income employees leave at about 3 times the rate of the highest earners.
+
+
+Q4: WHICH AGE GROUPS AND TENURE BANDS LEAVE MOST?
+-------------------------------------------------
+Age group
+- 18-25:  35.8%   (44 of 123 left)
+- 26-35:  19.1%   (116 of 606 left)
+- 36-45:   9.2%   (43 of 468 left)
+- 46-55:  11.5%   (26 of 226 left)
+- 56+:    17.0%   (8 of 47 left)   <- small group, treat with caution
+
+Tenure (years at the company)
+- 0-2 years:    29.8%   (102 of 342 left)
+- 3-5 years:    13.8%   (60 of 434 left)
+- 6-10 years:   12.3%   (55 of 448 left)
+- 11+ years:     8.1%   (20 of 246 left)
+=> Young and new employees leave the most. Attrition falls as tenure grows.
+
+
+Q5: LEAVERS VS STAYERS (AVERAGE VALUES)
+---------------------------------------
+                         Stayed (No)   Left (Yes)
+- Job satisfaction (1-4):     2.78         2.47
+- Work-life balance (1-4):    2.78         2.66
+- Years since promotion:      2.23         1.95
+- Monthly income:          6,832.74     4,787.09
+- Distance from home:         8.92        10.63
+=> Leavers earn about 30% less, report lower job satisfaction, and live
+   slightly further from work.
+=> Years since last promotion did NOT explain attrition: leavers actually had
+   slightly FEWER years since promotion. The hypothesis "long wait for a
+   promotion drives people out" was not supported by this data.
+
+
+MAIN CONCLUSION
+---------------
+Attrition is highest among young, new, low-paid employees, among employees who
+work overtime, and in the Sales and HR departments.
+
+
+RECOMMENDATIONS
+---------------
+1. Strengthen onboarding and mentoring in the first two years.
+2. Review pay for the low-income band.
+3. Review overtime workload, especially for new and young employees.
+4. Investigate why Sales and HR lose a higher share of employees
+   (for example, exit interviews).
+
+
+LIMITATIONS
+-----------
+- Correlation is not causation: the analysis shows links, not causes.
+- Age, tenure and income overlap (young employees are often newer and paid
+  less), so they may be one story seen three ways.
+- Small groups (for example 56+ with only 47 employees) give unstable rates.
+- The data is a single snapshot, so trends over time cannot be analysed.
+- It is a practice dataset, so findings are for learning, not real company advice.
+
+
+STILL TO ADD (run these and write your numbers here)
+----------------------------------------------------
+- Top 3 job roles by attrition rate: ____________________________
+- Attrition by job satisfaction score (1 to 4): _________________
+- Attrition by work-life balance score (1 to 4): ________________
